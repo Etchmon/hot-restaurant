@@ -36,21 +36,52 @@
                         </h3>
                     </div>
                     <div class="panel-body" id="reserve-section">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+                <div class="col-lg-12">
+    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                <strong>Wait List</strong>
+                            </h3>
+                        </div>
+                        <div class="panel-body" id="wait-section">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
 </body>
 
 <script type="text/javascript">
 
-    $.get("/api/tables", function (data) {
+    $.get("/api/reservations", function (data) {
         console.log(data);
-        for (var i = 0; i < data.length; i++) {
+        for (var i = 1; i < data.length; i++) {
             var allSection = $("<div>");
             allSection.addClass("well");
             allSection.attr("id", "reservation-well-" + i);
             $("#reserve-section").append(allSection);
             console.log(allSection);
             $("#reservation-well-" + i).html("<h2> <button>" + [i] + "</button>" + data[i].unique_id + "</h2>")
-        }
+        };
     });
+    $.get("/api/waitlist", function(data){
+        console.log(data);
+        for (var i = 1; i < data.length; i++) {
+            var allSection = $("<div>");
+            allSection.addClass("well");
+            allSection.attr("id", "wait-well-" + i);
+            $("#wait-section").append(allSection);
+            console.log(allSection);
+            $("#wait-well-" + i).html("<h2> <button>" + [i] + "</button>" + data[i].unique_id + "</h2>")
+        };
+    })
 
 </script>
 

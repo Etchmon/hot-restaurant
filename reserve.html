@@ -19,12 +19,14 @@
                 <h1 class="text-center">Hot Restaurant!!!</h1>
                 <hr>
                 <h2 class="text-center">Make Your Reservation</h2>
-                <button>
+                <a href="/view"><button>
                     <b>View Tables</b>
                 </button>
-                <button>
+                </a>
+                <a href="/"><button>
                     <b>Home</b>
                 </button>
+                </a>
             </div>
         </div>
         <form style="margin: 10px 0px;">
@@ -62,6 +64,29 @@
             <a href="#">GitHub Repo</a>
         </footer>
     </div>
+    <script type="text/javascript">
+        // Question: What does this code do?
+        $("#submit-form").on("click", function(event) {
+          event.preventDefault();
+          var newTable = {
+            'name': $("#name").val().trim(),
+            'phone': $("#phone-number").val().trim(),
+            'email': $("#email").val().trim(),
+            'unique_id': $("#unique-id").val().trim()
+          };
+    
+          // Question: What does this code do??
+          $.post("/api/tables", newTable)
+            .then(function(data) {
+              console.log("add.html", data);
+              alert("Adding character...");
+              $("#name").val("");
+              $("#phone-number").val("");
+              $("#email").val("");
+              $("#unique-id").val("")
+            });
+        });
+      </script>
 </body>
 
 </html>
